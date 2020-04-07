@@ -1,0 +1,14 @@
+name: "Issue Labeler"
+
+on:
+  issues:
+    types: [labeled]
+
+jobs:
+  apply-labels:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - uses: ./
+      with:
+        repo-token: ${{ secrets.GITHUB_TOKEN }}

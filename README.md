@@ -51,9 +51,9 @@ const core = require('@actions/core');
 ...
 
 async function run() {
-  try { 
+  try {
       ...
-  } 
+  }
   catch (error) {
     core.setFailed(error.message);
   }
@@ -97,7 +97,7 @@ $ git commit -a -m "v1 release"
 $ git push origin v1
 ```
 
-Your action is now published! :rocket: 
+Your action is now published! :rocket:
 
 See the [versioning documentation](https://github.com/actions/toolkit/blob/master/docs/action-versioning.md)
 
