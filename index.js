@@ -14,7 +14,7 @@ async function run() {
     const client = new github.GitHub(token);
 
     const config = await loadConfig(configPath)
-    core.debug(`Loaded configuration ${JSON.stringify(config)}`)
+    core.info(`Loaded configuration ${JSON.stringify(config)}`)
 
     const labels = await determineLables(github.context.payload.issue.body, config)
     core.info(`The following ${ labels.length } lables will be applied: ${ labels.join(',') }`)
@@ -32,7 +32,11 @@ async function loadConfig(path) {
   let config = yaml.safeLoad(fs.readFileSync(path, 'utf8'))
 
   Object.keys(config).map((key) => {
-    config[key] = config[key].map((regex) => { return regexParser(regex) })
+    let labelConfig = config[key]
+    if (typeof labelConfig === 'object' && !Array.isArray(labelConfig)) {
+      labelConfig = Object.values(labelConfig)
+    }
+    labelConfig.map((regex) => { return regexParser(regex) })
   })
 
   return config
