@@ -1,9 +1,13 @@
 bug:
   - /error/
 
-friday:
-  - /black/
-  - /party/
+friday: &friday
+  happy: /black/
+  label: /party/
 
-saturday:
-  - /sad/
+saturday: &saturday
+  no_duplicate_label: /sad/
+
+party:
+  << : *friday
+  << : *saturday
