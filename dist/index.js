@@ -1789,7 +1789,7 @@ async function loadConfig(path) {
     if (typeof labelConfig === 'object' && !Array.isArray(labelConfig)) {
       labelConfig = Object.values(labelConfig)
     }
-    labelConfig.map((regex) => { return regexParser(regex) })
+    config[key] = labelConfig.map((regex) => { return regexParser(regex) })
   })
 
   return config
